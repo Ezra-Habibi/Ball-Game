@@ -9,6 +9,12 @@ public class EndPoint : MonoBehaviour
     public void OnCollisionEnter(Collision col)
     {
         if(col.collider.name == "Player"){
+            
+            int currentLevel = SceneManager.GetActiveScene().buildIndex;
+            if (currentLevel >= PlayerPrefs.GetInt("levelReached"))
+            {
+                PlayerPrefs.SetInt("levelReached", currentLevel);
+            }
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
